@@ -1,0 +1,6 @@
+---
+- hosts: all
+  remote_user: splunk
+
+- name: restart splunkd
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
