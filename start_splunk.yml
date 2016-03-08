@@ -2,5 +2,7 @@
 - hosts: all
   remote_user: splunk
 
-- name: start splunkd
-  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start"
+  tasks:
+
+  - name: start splunkd
+    command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start"
