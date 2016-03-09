@@ -2,7 +2,8 @@
 - hosts: all
   remote_user: splunk
 
-  tasks:
+  roles:
+    - common
 
-  - name: stop splunkd
-    command: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
+#  - name: stop splunkd
+#    command: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
