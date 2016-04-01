@@ -13,7 +13,7 @@
         dest="{{ splunk_installation.splunk_home_path }}/etc/auth/ssl"
         owner=splunk
         group=splunk
-        state=present
+        state=file
   when: splunk_web_conf.settings.enableSplunkWebSSL is defined and
         splunk_web_conf.settings.enableSplunkWebSSL == true
 
@@ -22,6 +22,6 @@
         dest="{{ splunk_installation.splunk_home_path }}/etc/auth/ssl"
         owner=splunk
         group=splunk
-        state=present
+        state=file
   when: splunk_web_conf.settings.enableSplunkWebSSL is defined and
         splunk_web_conf.settings.enableSplunkWebSSL == true
