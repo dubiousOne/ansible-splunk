@@ -1,0 +1,27 @@
+---
+
+- name: Create cert directory
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/auth/ssl"
+        owner=splunk
+        group=splunk
+        state=directory
+  when: splunk_web_conf.settings.enableSplunkWebSSL is defined and
+        splunk_web_conf.settings.enableSplunkWebSSL == true
+
+- name: Copy key
+  file: src="{{ splunk_repository.ssl_repository }}/sig.key"
+        dest="{{ splunk_installation.splunk_home_path }}/etc/auth/ssl"
+        owner=splunk
+        group=splunk
+        state=present
+  when: splunk_web_conf.settings.enableSplunkWebSSL is defined and
+        splunk_web_conf.settings.enableSplunkWebSSL == true
+
+- name: Copy cert
+  file: src="{{ splunk_repository.ssl_repository }}/ca.cer"
+        dest="{{ splunk_installation.splunk_home_path }}/etc/auth/ssl"
+        owner=splunk
+        group=splunk
+        state=present
+  when: splunk_web_conf.settings.enableSplunkWebSSL is defined and
+        splunk_web_conf.settings.enableSplunkWebSSL == true
