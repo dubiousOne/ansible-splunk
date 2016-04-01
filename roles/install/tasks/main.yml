@@ -7,3 +7,4 @@
 - include: firewalld_open_splunkports.yml
 - include: splunk_ftb.yml
 - include: fetch_distserverkeys.yml
+- include: copy_ssl_keys.yml
