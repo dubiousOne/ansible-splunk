@@ -1,6 +1,6 @@
 ---
 - name: Copy local.meta
-  file: 
+  copy: 
     src=files/local.meta
     dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_nessus/metadata/local.meta"
     owner=splunk
