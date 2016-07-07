@@ -46,18 +46,6 @@
   with_items: "{{groups['peernode']}}"
   when: cluster_indexes is defined or cluster_system_indexes is defined
 
-- name: make sure splunk owns db volume paths
-  command: "chown splunk:splunk {{ cluster_indexes.volume:db.path }}"
-  delegate_to: "{{item}}"
-  with_items: "{{groups['peernode']}}"
-  when: "cluster_indexes.volume:db.path is defined or cluster_system_indexes is defined"
-
-- name: make sure splunk owns colddb volume paths
-  command: "chown splunk:splunk {{ cluster_indexes.volume:colddb.path }}"
-  delegate_to: "{{item}}"
-  with_items: "{{groups['peernode']}}"
-  when: "cluster_indexes.volume:colddb.path is defined or cluster_system_indexes is defined"
-
 - name: push bundle to indexer cluster members
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes -auth admin:{{ splunk_installation.admin_password }}"
   when: cluster_indexes is defined or cluster_system_indexes is defined
