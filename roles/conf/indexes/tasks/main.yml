@@ -36,8 +36,14 @@
   notify: splunk restart
   when: indexes is defined
 
-- name: start splunkd for bundle push
+- name: start splunkd on masternode for bundle push
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start"
+  when: cluster_indexes is defined or cluster_system_indexes is defined
+
+- name: start splunkd on peernodes for bundle push
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start"
+  delegate_to: "{{item}}"
+  with_items: "{{groups['peernodes']}}"
   when: cluster_indexes is defined or cluster_system_indexes is defined
 
 - name: push bundle to indexer cluster members
