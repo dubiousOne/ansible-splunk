@@ -37,7 +37,7 @@
   when: indexes is defined
 
 - name: start splunkd for bundle push
-  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --answer-yes -auth admin:{{ splunk_installation.admin_password }}"
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start"
   when: cluster_indexes is defined or cluster_system_indexes is defined
 
 - name: push bundle to indexer cluster members
