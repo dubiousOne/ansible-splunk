@@ -1,0 +1,14 @@
+---
+# Heavy Forwarder
+- name: Create app dir on heavyforwarder
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/apps/TA-DUOSecurity2FA"
+        state=directory
+  when: "'heavyforwarder' in group_names"
+
+- name: Copy duo add-on to heavyforwarder
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.duo_addon_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/apps/"
+          copy=yes
+          owner=splunk
+          group=splunk
+  when: "'heavyforwarder' in group_names"
